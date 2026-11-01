@@ -12,8 +12,6 @@ body {
   padding: 0;
   background: linear-gradient(-45deg, #200 0%, rgb(223, 44, 44) 100%);
   overflow: hidden;
-  cursor: default;
-  user-select: none;
 }
 
 .clock {
@@ -29,19 +27,33 @@ body {
   );
   border-radius: 200px;
   box-shadow: 20px 20px 40px rgba(0, 0, 0, 0.75);
+  cursor: default;
+  user-select: none;
 }
 
-.clock .border.front {
+.clock::before,
+.clock::after {
   position: absolute;
-  top: -50px;
-  left: -50px;
+  width: 410px;
+  height: 410px;
+  box-sizing: border-box;
+  border: 10px solid #333;
+  border-radius: 50%;
+  content: "";
+  pointer-events: none;
+}
+
+.clock::before {
+  top: -2.5px;
+  left: -2.5px;
+  z-index: 1;
+}
+
+.clock::after {
+  top: -5px;
+  left: -5px;
+  z-index: 2;
   filter: drop-shadow(7.5px 7.5px 2.5px rgba(0, 0, 0, 0.75));
-}
-
-.clock .border.side {
-  position: absolute;
-  top: -47.5px;
-  left: -47.5px;
 }
 
 /*-------------------------*\
@@ -265,4 +277,9 @@ h1 {
     2px 2px 0 #333,
     2.5px 2.5px 0 #333,
     10px 10px 10px rgba(0, 0, 0, 0.75);
+}
+
+h1::selection {
+  background-color: #fff;
+  color: #800;
 }
